@@ -5,11 +5,11 @@
 
 using namespace std;
 
-//¸´Êı 
+//å¤æ•° 
 class Complex{
 public:
     float real;
-	float imagine;
+    float imagine;
 public:
     Complex(int a=0,int b=0){
 		real=a;
@@ -20,7 +20,7 @@ public:
 	virtual	void show(){
 		cout<<real<<'+'<<imagine<<'i'<<endl; 
 	}	
-	virtual	double module(){
+	virtual	double mod(){
 		return (pow((pow(real,2)+pow(imagine,2)),1/2));
 	}
 	virtual	Complex inverse(){
@@ -52,13 +52,13 @@ Complex operator*(Complex a,Complex b){
 
 Complex operator/(Complex a,Complex b){
 	Complex c;
-	c.real=(a.real*b.real+a.imagine*b.imagine)/(pow(b.module(),2));
-	c.imagine=(-a.real*b.imagine+b.real*a.imagine)/(pow(b.module(),2));
+	c.real=(a.real*b.real+a.imagine*b.imagine)/(pow(b.mod(),2));
+	c.imagine=(-a.real*b.imagine+b.real*a.imagine)/(pow(b.mod(),2));
 	return c;
 }
 
 
-//ËÄÔªÊı 
+//å››å…ƒæ•° 
 class Quternion:public Complex{
 public:
 	float j;
@@ -72,12 +72,12 @@ public:
 	}
 	~Quternion(){
 	}
-	//ÖØÔØ 
+	//é‡è½½ 
 	void show() override{
 		cout<<real<<'+'<<imagine<<'i'<<'+'<<j<<'j'<<'+'<<k<<'k'<<endl;
 	} 
 	
-	double module override(){
+	double mod override(){
 		double m=real*real+imagine*imagine+j*j+k*k;
 		return (pow(m,1/2));
 	}
@@ -117,14 +117,14 @@ Quternion operator*(Quternion a,Quternion b){
 Quternion operator/(Quternion a,Quternion b){
 	Quternion c(0,0,0,0);
 	c=a*b.inverse();
-	c.real/=b.module();
-	c.imagine/=b.module();
-	c.j/=b.module();
-	c.k/=b.module();
+	c.real/=b.mod();
+	c.imagine/=b.mod();
+	c.j/=b.mod();
+	c.k/=b.mod();
 	return c;
 }
 
-//¾ØÕó 
+//çŸ©é˜µ 
 
 class Matrix{
 public:
@@ -151,13 +151,9 @@ public:
 		return t;
 	}
 	
-	
-	
-	
-	
 };
 
-//¿É×Ô¶¯Ôö³¤µÄÊı×é 
+//å¯è‡ªåŠ¨å¢é•¿çš„æ•°ç»„ 
 //pushback()
 
 
@@ -170,7 +166,7 @@ public:
 
 
 
-//ÏòÁ¿
+//å‘é‡
 class Vector{
 public:
 	float *v;
@@ -206,7 +202,7 @@ public:
 
 
 
-//ÕÅÁ¿tensor 
+//å¼ é‡tensor 
 
 //
 //
